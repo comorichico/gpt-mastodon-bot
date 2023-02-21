@@ -38,7 +38,7 @@ def main(content,st,id):
 
     with closing(sqlite3.connect(dbname)) as conn:
         c = conn.cursor()
-        create_table = "CREATE TABLE IF NOT EXISTS users(userid, str_count, str_limit)"
+        create_table = "CREATE TABLE IF NOT EXISTS users(userid, str_count, str_limit, PRIMARY KEY(userid))"
         c.execute(create_table)
         sql = "select str_count, str_limit from users where userid = ?"
         word = (id,)
@@ -77,15 +77,17 @@ def main(content,st,id):
             id,
             visibility='public')
 
-    sql = "INSERT OR REPLACE INTO users (userid, str_count, str_limit) values (?,?,?)"
-    if str_count == -1:
-        str_count = 0
-        limit = str_limit
+    with closing(sqlite3.connect(dbname)) as conn:
+        c = conn.cursor()
+        sql = "INSERT OR REPLACE INTO users (userid, str_count, str_limit) values (?,?,?)"
+        if str_count == -1:
+            str_count = 0
+            limit = str_limit
 
-    str_count = str_count + len(req)
-    words = (id , str_count, limit)
-    c.execute(sql, words)
-    conn.commit()
+        str_count = str_count + len(req)
+        words = (id , str_count, limit)
+        c.execute(sql, words)
+        conn.commit()
 
 mastodon = Mastodon(access_token = 'gptchan_clientcred.txt')
 
