@@ -72,10 +72,20 @@ def main(content,st,id):
         stop=["<|endoftext|>"],
     )
     reply = response.choices[0].text.strip()
-    mastodon.status_reply(st,
-            reply,
-            id,
-            visibility='public')
+    if len(reply) > 500:
+        reply = reply[0:480]
+    
+    try:
+        mastodon.status_reply(st,
+                reply,
+                id,
+                visibility='public')
+    except Exception as e:
+        print('=== エラー内容 ===')
+        print('type:' + str(type(e)))
+        print('args:' + str(e.args))
+        print('message:' + e.message)
+        print('e自身:' + str(e))
 
     with closing(sqlite3.connect(dbname)) as conn:
         c = conn.cursor()
