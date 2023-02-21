@@ -7,8 +7,11 @@ WindowsPCであればMicrosoftStoreでPythonと検索してインストールす
 動作確認はPython3.10で行っています。
 
 まず最初にコマンドプロンプト、powershell、ターミナルなどから
+
 pip install mastodon.py
+
 pip install openai
+
 を実行します。
 
 mastodonにBOT用のアカウントを作ってください。
@@ -19,10 +22,13 @@ cred_file_nameはそのままでいいでしょう。
 app_nameは好きなものに変えても良いです。
 
 python setup.py
+
 で実行するとログインに使うファイルが生成されます。
 
 その後
+
 python gpt.py
+
 で実行するとBOTが起動します。
 
 あとはBOTにメンションをつけて話しかけてみましょう。
