@@ -62,19 +62,42 @@ def main(content,st,id):
                         id,
                         visibility='public')
                 return
-
-    response = openai.Completion.create(
-        engine="text-davinci-003",
-        prompt=req,
-        temperature=1.0,
-        top_p=0.9,
-        max_tokens=512,
-        stop=["<|endoftext|>"],
-    )
-    reply = response.choices[0].text.strip()
+    reply = ""
+    try:
+        response = openai.Completion.create(
+            engine="text-davinci-003",
+            prompt=req,
+            temperature=1.0,
+            top_p=0.9,
+            max_tokens=512,
+            stop=["<|endoftext|>"],
+        )
+        reply = response.choices[0].text.strip()
+    except Exception as e:
+        print('=== エラー内容 ===')
+        print('type:' + str(type(e)))
+        print('args:' + str(e.args))
+        print('e自身:' + str(e))
+        try:
+            reply = "現在OpenAIのAPIサーバー側で"
+            reply += "問題が発生しているようです。"
+            reply += "しばらく時間を置いてから"
+            reply += "やり直してほしいです。申し訳ないです。"
+            mastodon.status_reply(st,
+                    reply,
+                    id,
+                    visibility='public')
+        except Exception as e:
+            print('=== エラー内容 ===')
+            print('type:' + str(type(e)))
+            print('args:' + str(e.args))
+            print('e自身:' + str(e))
+    # 返事を500文字に制限する場合
+    # ここのコードを使用してください。
+    """
     if len(reply) > 500:
         reply = reply[0:480]
-    
+    """
     try:
         mastodon.status_reply(st,
                 reply,
