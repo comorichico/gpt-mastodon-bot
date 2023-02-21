@@ -84,7 +84,6 @@ def main(content,st,id):
         print('=== エラー内容 ===')
         print('type:' + str(type(e)))
         print('args:' + str(e.args))
-        print('message:' + e.message)
         print('e自身:' + str(e))
 
     with closing(sqlite3.connect(dbname)) as conn:
