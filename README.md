@@ -6,7 +6,15 @@ Pythonのインストールをしてない人はPythonをインストールし�
 WindowsPCであればMicrosoftStoreでPythonと検索してインストールするのが楽です。
 動作確認はPython3.10で行っています。
 
-まず最初にコマンドプロンプト、powershell、ターミナルなどから
+sample.envのファイル名を.envにしてください。
+
+https://beta.openai.com/account/api-keys
+
+のページでAPIkeyを生成してください。
+
+.envのファイルのkeyのところにAPIkeyを貼り付けます。
+
+コマンドプロンプト、powershell、ターミナルなどから
 
 pip install mastodon.py
 
