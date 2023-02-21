@@ -6,7 +6,15 @@ Pythonのインストールをしてない人はPythonをインストールし�
 WindowsPCであればMicrosoftStoreでPythonと検索してインストールするのが楽です。
 動作確認はPython3.10で行っています。
 
-まず最初にコマンドプロンプト、powershell、ターミナルなどから
+sample.envのファイル名を.envにしてください。
+
+https://beta.openai.com/account/api-keys
+
+のページでAPIkeyを生成してください。
+
+.envのファイルのkeyのところにAPIkeyを貼り付けます。
+
+コマンドプロンプト、powershell、ターミナルなどから
 
 pip install mastodon.py
 
@@ -34,3 +42,13 @@ python gpt.py
 あとはBOTにメンションをつけて話しかけてみましょう。
 返事があれば成功です。
 おしゃべりを楽しみましょう！
+
+db_reset.pyについて
+
+一緒に起動しておくと午前0時ちょうどにデータベースをリセットします。
+
+1日500文字制限にしているのでこれも起動しておくと良いです。
+
+python db_reset.py
+
+で実行して動かしておくと良いです。
