@@ -1,4 +1,7 @@
 gpt_setup.py
 gptchan_clientcred.txt
+gpt2_setup.py
+gpt2.py
+gptchan_clientcred2.txt
 .env
 gpt.db
