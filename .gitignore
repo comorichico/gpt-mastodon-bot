@@ -5,3 +5,5 @@ gpt2.py
 gptchan_clientcred2.txt
 .env
 gpt.db
+test.py
+poppin_setup.py
